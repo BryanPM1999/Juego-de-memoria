@@ -1,68 +1,83 @@
 const totalCards = 12;
 let cards = [];
-let selectedcards = [];
-let valuesUsed = [];
+let selectedCards = [];
 let currentMove = 0;
-let maxAttempts = 7; // Número máximo de intentos
+let maxAttempts = 7;
+let Pares_coincididos = 0;
 
-let cardTemplate = '<div class="card"><div class="back"></div><div class="face"></div></div>';
+function generateValues() {
+    const values = [];
+    for (let i = 0; i < totalCards / 2; i++) {
+        values.push(i, i);
+    }
+    return values.sort(() => Math.random() - 0.5);
+}
 
-function activate(a) {
-    if (currentMove < 2 && maxAttempts > 0) {
-        if ((!selectedcards[0] || selectedcards[0] !== a.target) && !a.target.classList.contains('active')) {
-            a.target.classList.add('active');
-            selectedcards.push(a.target);
+function updateStats() {
+    document.querySelector('#stats').textContent = `Intentos restantes: ${maxAttempts}`;
+}
 
-            if (++currentMove == 2) {
-                if (selectedcards[0].querySelector('.face').innerHTML === selectedcards[1].querySelector('.face').innerHTML) {
-                    selectedcards = [];
-                    currentMove = 0;
-                } else {
-                    maxAttempts--; // Reducir intentos al fallar
-                    setTimeout(() => {
-                        selectedcards[0].classList.remove('active');
-                        selectedcards[1].classList.remove('active');
-                        selectedcards = [];
-                        currentMove = 0;
-                        document.querySelector('#stats').innerHTML = `Intentos restantes: ${maxAttempts}`;
-                        
-                        if (maxAttempts === 0) {
-                            alert("¡Juego terminado! No tienes más intentos.");
-                            disableGame();
-                        }
-                    }, 600);
-                }
+function disableGame() {
+    cards.forEach(c => c.removeEventListener('click', activate));
+}
+
+function showAlert(message) {
+    alert(message); // Puedes reemplazar esto con un modal o mensaje personalizado si deseas
+}
+
+function activate(e) {
+    const card = e.currentTarget;
+    if (card.classList.contains('active') || selectedCards.includes(card) || currentMove >= 2 || maxAttempts <= 0) return;
+
+    card.classList.add('active');
+    selectedCards.push(card);
+    currentMove++;
+
+    if (currentMove === 2) {
+        const [card1, card2] = selectedCards;
+        const val1 = card1.querySelector('.face').textContent;
+        const val2 = card2.querySelector('.face').textContent;
+
+        if (val1 === val2) {
+            Pares_coincididos++;
+            selectedCards = [];
+            currentMove = 0;
+
+            if (Pares_coincididos === totalCards / 2) {
+                showAlert('¡Felicidades! Has ganado.');
+                disableGame();
             }
+        } else {
+            maxAttempts--;
+            updateStats();
+            setTimeout(() => {
+                card1.classList.remove('active');
+                card2.classList.remove('active');
+                selectedCards = [];
+                currentMove = 0;
+                if (maxAttempts === 0) {
+                    showAlert('¡Juego terminado! Has agotado tus intentos.');
+                    disableGame();
+                }
+            }, 700);
         }
     }
 }
 
-/* Función para deshabilitar el juego cuando los intentos llegan a 0 */
-function disableGame() {
-    cards.forEach(card => card.querySelector('.card').removeEventListener('click', activate));
-}
+// Inicializar juego
+const game = document.querySelector('#game');
+const values = generateValues();
 
-/* Función para generar valores aleatorios en las tarjetas */
-function randomValue() {
-    let random = Math.floor(Math.random() * totalCards * 0.5);
-    let values = valuesUsed.filter(value => value === random);
-    if (values.length < 2) {
-        valuesUsed.push(random);
-    } else {
-        randomValue();
-    }
-}
-
-/* Creación de las cartas y asignación de valores */
 for (let i = 0; i < totalCards; i++) {
-    let div = document.createElement('div');
-    div.innerHTML = cardTemplate;
-    cards.push(div);
-    document.querySelector('#game').append(cards[i]); // Se inyecta el arreglo de cartas en el HTML
-    randomValue();
-    cards[i].querySelector('.face').innerHTML = valuesUsed[i];
-    cards[i].querySelector('.card').addEventListener('click', activate);
+    const card = document.createElement('div');
+    card.classList.add('card');
+    card.innerHTML = `
+        <div class="back"></div>
+        <div class="face">${values[i]}</div>
+    `;
+    card.addEventListener('click', activate);
+    game.appendChild(card);
+    cards.push(card);
 }
 
-/* Mostrar intentos restantes en la interfaz */
-document.querySelector('#stats').innerHTML = `Intentos restantes: ${maxAttempts}`;
+updateStats();

@@ -1,25 +1,42 @@
-<!DOCTYPE html> 
+<!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Juego de memoria</title>
-    <link rel="stylesheet" href="../public/css/Inicio.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Juego de Memoria</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./public/css/Inicio.css" />
+    <link rel="stylesheet" href="./public/css/mensajes.css" />
 </head>
 <body>
-    <h2>Juego de memoria</h2>
+    <div class="game-start-container">
+        <div class="background-effect"></div>
 
-    <!-- Botón principal -->
-    <button id="btnJugarAhora">Jugar Ahora</button>
+        <h2 class="text-4xl md:text-5xl font-bold mb-8 text-center drop-shadow-lg">
+            Juego de Memoria
+        </h2>
 
-    <!-- Formulario oculto al inicio -->
-    <div id="formulario">
-        <p>Ingresa tu nombre:</p>
-        <input type="text" id="nombre" placeholder="Tu nombre">
-        <br><br>
-        <button id="btnJugar">Jugar</button>
+        <button id="btnJugarAhora" class="btn-principal">
+            Jugar Ahora
+        </button>
+
+        <div id="formulario" class="formulario-container hidden" method="post">
+            <p class="texto-formulario">Ingresa tu nombre:</p>
+            <input type="text" id="nombre" placeholder="Tu nombre" class="input-nombre">
+            <button id="btnJugar" class="btn-secundario">
+                Jugar
+            </button>
+        </div>
     </div>
 
-    <script src="../public/js/Inicio.js"></script>
+    <div id="customAlertOverlay" class="custom-alert-overlay">
+        <div class="custom-alert-box">
+            <p id="customAlertMessage"></p>
+            <button id="customAlertClose">OK</button>
+        </div>
+    </div>
+
+    <script src="./public/js/Inicio.js"></script>
+    <script src="./public/js/mensajes.js"></script>
 </body>
 </html>

@@ -1,0 +1,49 @@
+/*estilo de mensajes*/
+.custom-alert-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.3s linear;
+}
+
+.custom-alert-overlay.visible {
+    visibility: visible;
+    opacity: 1;
+}
+
+.custom-alert-box {
+    background-color: #1a0033;
+    border: 3px solid #ff00ff;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.7);
+    max-width: 400px;
+    width: 90%;
+    color: #fff;
+}
+
+.custom-alert-box button {
+    background-color: #ff00ff;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-top: 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.custom-alert-box button:hover {
+    background-color: #e000e0;
+}
