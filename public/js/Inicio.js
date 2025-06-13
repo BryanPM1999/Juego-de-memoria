@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const nombre = inputNombre.value.trim();
         if (nombre) {
             // Redirige con nombre en la URL
-            window.location.href = "../juego.html";
+            window.location.href = `${window.origin}/Juego-de-memoria/Juego.html`;
         } else {
             showAlert('Por favor, ingresa tu nombre antes de jugar.');
         }
