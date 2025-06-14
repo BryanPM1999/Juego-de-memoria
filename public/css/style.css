@@ -112,6 +112,94 @@ body {
 .card.active .face {
   transform: rotateY(0deg);
 }
+/*estilo del menu*/
+.hamburger {
+  width: 40px;
+  height: 30px;
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1001;
+}
+.hamburger span {
+  display: block;
+  height: 5px;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+.menu-hamburguesa {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 230px;
+  height: 100vh;
+  background: rgba(30, 30, 30, 0.4);
+  backdrop-filter: blur(12px);
+  padding-top: 60px;
+  transform: translateX(-250px);
+  transition: 0.3s;
+  z-index: 1000;
+  color: #fff;
+  font-family: inherit;
+  box-shadow: 0 0 32px 8px rgba(0, 0, 0, 0.25);
+}
+.menu-hamburguesa.open {
+  transform: translateX(0);
+}
+.menu-hamburguesa ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.menu-hamburguesa li {
+  padding: 18px 30px;
+  border-bottom: 1px solid #444;
+  cursor: pointer;
+  font-size: 18px;
+}
+.menu-hamburguesa li:hover {
+  background: #333;
+}
+.modal-acerca {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.7);
+  justify-content: center;
+  align-items: center;
+  z-index: 2000;
+}
+.modal-acerca-content {
+  background: #fff;
+  color: #222;
+  padding: 32px 36px;
+  border-radius: 10px;
+  max-width: 370px;
+  text-align: left;
+  position: relative;
+  font-size: 17px;
+}
+.modal-acerca .close {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  color: #222;
+  cursor: pointer;
+  font-weight: bold;
+}
+.modal-acerca .close:hover {
+  color: #d32f2f;
+}
+
 
 @media (max-width: 768px) {
   .card {

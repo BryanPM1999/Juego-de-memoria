@@ -81,3 +81,30 @@ for (let i = 0; i < totalCards; i++) {
 }
 
 updateStats();
+function toggleMenuHamburguesa() {
+  document.getElementById('menuHamburguesa').classList.toggle('open');
+}
+
+///menu
+function goToMenu(option) {
+  if (option === 'dashboard') {
+    alert('Ir al Dashboard');
+  } else if (option === 'acerca') {
+    document.getElementById('modalAcerca').style.display = 'flex';
+  } else if (option === 'salir') {
+    window.location.href = '../controllers/controladorInicio.php?logout=true';
+  }
+  toggleMenuHamburguesa();
+}
+
+function closeModalAcerca() {
+  document.getElementById('modalAcerca').style.display = 'none';
+}
+
+window.onclick = function (event) {
+  const modal = document.getElementById('modalAcerca');
+  if (event.target === modal) {
+    modal.style.display = 'none';
+  }
+}
+

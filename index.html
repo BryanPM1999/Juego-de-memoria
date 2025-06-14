@@ -20,13 +20,13 @@
             Jugar Ahora
         </button>
 
-        <div id="formulario" class="formulario-container hidden" method="post" action="./controller/InicioController.php">
+        <form id="formulario" class="formulario-container hidden" method="post" action="./controllers/controladorInicio.php">
             <p class="texto-formulario">Ingresa tu nombre:</p>
-            <input type="text" id="nombre" placeholder="Tu nombre" class="input-nombre">
-            <button id="btnJugar" class="btn-secundario">
+            <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" class="input-nombre">
+            <button id="btnJugar" class="btn-secundario" type="submit">
                 Jugar
             </button>
-        </div>
+        </form>
     </div>
 
     <div id="customAlertOverlay" class="custom-alert-overlay">

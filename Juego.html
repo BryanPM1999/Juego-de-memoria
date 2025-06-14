@@ -5,24 +5,58 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>¡Adivina la Carta!</title>
   <link rel="stylesheet" href="./public/css/style.css" />
-    <link rel="stylesheet" href="./public/css/mensajes.css" />
+  <link rel="stylesheet" href="./public/css/mensajes.css" />
 </head>
 <body>
-    <div id="stats">Intentos restantes: 7</div>
-    <div class="game-container">
-        <div class="background-effect"></div>
-        <h1 class="title">¡Adivina la Carta!</h1>
-        <div id="game"></div>
-        <p class="instructions">Haz clic en una carta para voltearla.</p>
-    </div>
+  <div id="stats">Intentos restantes: 7</div>
+  <div class="game-container">
+    <div class="background-effect"></div>
+    <h1 class="title">¡Adivina la Carta!</h1>
+    <div id="game"></div>
+    <p class="instructions">Haz clic en una carta para voltearla.</p>
+  </div>
 
-        <div id="customAlertOverlay" class="custom-alert-overlay">
-            <div class="custom-alert-box">
-                <p id="customAlertMessage"></p>
-                <button id="customAlertClose">OK</button>
-            </div>
-        </div>
-    <script src="./public/js/script.js"></script>
-    <script src="./public/js/mensajes.js"></script>
+  <div id="customAlertOverlay" class="custom-alert-overlay">
+    <div class="custom-alert-box">
+      <p id="customAlertMessage"></p>
+      <button id="customAlertClose">OK</button>
+    </div>
+  </div>
+
+  <div class="hamburger" onclick="toggleMenuHamburguesa()" title="Menú">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+
+  <nav class="menu-hamburguesa" id="menuHamburguesa">
+    <ul>
+      <li onclick="goToMenu('dashboard')">1- Dashboard</li>
+      <li onclick="goToMenu('acerca')">2- Acerca de</li>
+      <li onclick="goToMenu('salir')">3- Salir</li>
+    </ul>
+  </nav>
+
+  <div class="modal-acerca" id="modalAcerca">
+    <div class="modal-acerca-content">
+      <span class="close" onclick="closeModalAcerca()">&times;</span>
+      <h2>Acerca del juego</h2>
+      <b>Juego de Memoria - Versión 1.0.0</b><br/><br/>
+      <b>Desarrollado por:</b><br/><br/>
+      <b>1- Wilmer Alexander Reyes Reyes</b><br/>
+      <b>2- Brayan Estuardo Perez Martinez</b><br/>
+      <b>3- Sara Elizabeth Ventura Hernandez</b><br/>
+      <b>4- Anderson Daniel Guardado Carrillo</b><br/>
+      <b>5- Diego Aldahir Ortiz Serrano</b><br/>
+      <b>6- Martha Carolina Pulunto Pulunto</b><br/>
+      <b>7- Joseline Iliana Musun Blanco</b><br/><br/>
+      <b>Fecha:</b> Junio 2025<br/><br/>
+      Este juego fue creado como proyecto de práctica para mejorar la memoria a corto plazo.<br/>
+      ¡Diviértete jugando!
+    </div>
+  </div>
+
+  <script src="./public/js/script.js"></script>
+  <script src="./public/js/mensajes.js"></script>
 </body>
 </html>
